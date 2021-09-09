@@ -1,0 +1,15 @@
+<ngb-toast
+  *ngFor="let toast of toastService.toasts"
+  [class]="toast.cssClasses"
+  [header]="toast.headerText"
+  [autohide]="true"
+  [delay]="10000"
+  (hide)="onHide(toast)"
+>
+  <ng-container>
+    <h6>{{ toast.message }}</h6>
+  </ng-container>
+  <ng-container *ngIf="toast.isDeleteToast">
+    <button class="btn btn-danger" (click)="abortDeletion(toast)">Cancel Room Deletion</button>
+  </ng-container>
+</ngb-toast>

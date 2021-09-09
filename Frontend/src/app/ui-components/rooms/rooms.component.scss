@@ -1,0 +1,32 @@
+@import "src/styles";
+
+.attributes {
+  border-bottom: $border-light-secondary-m;
+}
+
+.attribute {
+  border-right: $border-light-secondary-s;
+  height: $height-s;
+  color: $white;
+}
+
+.btn-outline-primary {
+  width: $width-l;
+  height: $height-s;
+}
+
+.btn-outline-primary:hover {
+  color: $white;
+}
+
+fa-icon {
+  font-size: $fa-icon-size;
+}
+
+#room-name {
+  border-color: $secondary;
+}
+
+#room-name::placeholder {
+  color: $secondary;
+}

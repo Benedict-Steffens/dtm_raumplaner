@@ -1,0 +1,39 @@
+@import "src/styles";
+
+p {
+  color: $danger;
+}
+
+label {
+  font-size: large;
+}
+
+.rooms {
+  width: 100%;
+  height: 200px;
+  border: $border-xs solid $input-border-color;
+  border-radius: $border-radius;
+  overflow-y: scroll;
+}
+
+.form-check {
+  border-bottom: $border-xs solid black;
+}
+
+.btn {
+  width: $width-m;
+  height: $height-s;
+}
+
+::ng-deep
+.custom-slider {
+  .ng5-slider {
+    .ng5-slider-selection {
+      background: $light !important;
+    }
+  }
+}
+
+#cross-click:focus {
+  outline: none;
+}

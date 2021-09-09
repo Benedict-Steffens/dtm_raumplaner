@@ -1,0 +1,98 @@
+<div role="document" class="modal-dialog m-0">
+  <div class="modal-content">
+    <div class="modal-header bg-secondary d-flex align-items-center">
+      <h4 class="modal-title text-white ">{{ title }}</h4>
+      <button id="cross-click" type="button" class="close text-white" aria-label="Close"
+              (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="roomForm">
+        <div>
+          <label for="name">Room Name</label>
+          <input id="name"
+                 formControlName="name"
+                 class="form-control"
+                 (keyup)="resetNameToNotUsed()">
+          <ng-container
+            *ngIf=" roomForm.get('name').invalid && (roomForm.get('name').touched || roomForm.get('name').dirty)">
+            <ng-container *ngIf="roomForm.get('name').hasError('required')">
+              <p>Please specify the room name.</p>
+            </ng-container>
+            <ng-container *ngIf="roomForm.get('name').hasError('maxlength')">
+              <p>Room name shall not be longer than 100 characters.</p>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="isNameAlreadyUsed">
+            <p>This room name exists already. Please choose another name.</p>
+          </ng-container>
+        </div>
+
+        <div class="mt-4">
+          <label for="description">Room Description</label>
+          <textarea id="description"
+                    formControlName="description"
+                    rows="4"
+                    class="form-control">
+          </textarea>
+          <ng-container
+            *ngIf="roomForm.get('description').invalid && (roomForm.get('description').touched || roomForm.get('description').dirty)">
+            <ng-container *ngIf="roomForm.get('description').hasError('required')">
+              <p>Please specify the room description.</p>
+            </ng-container>
+            <ng-container *ngIf="roomForm.get('description').hasError('maxlength')">
+              <p>Room description shall not be longer than 3000 characters.</p>
+            </ng-container>
+          </ng-container>
+        </div>
+
+        <div class="mt-4">
+          <label for="location">Room Location</label>
+          <textarea id="location"
+                    formControlName="location"
+                    rows="4"
+                    class="form-control">
+          </textarea>
+          <ng-container
+            *ngIf="roomForm.get('location').invalid && (roomForm.get('location').touched || roomForm.get('location').dirty)">
+            <ng-container *ngIf="roomForm.get('location').hasError('required')">
+              <p>Please specify the room location.</p>
+            </ng-container>
+            <ng-container *ngIf="roomForm.get('location').hasError('maxlength')">
+              <p>Room location shall not be longer than 500 characters.</p>
+            </ng-container>
+          </ng-container>
+        </div>
+
+        <div class="mt-4">
+          <label for="capacity">Room Capacity</label>
+          <input id="capacity"
+                 type="number"
+                 formControlName="capacity"
+                 class="form-control">
+          <ng-container
+            *ngIf="roomForm.get('capacity').invalid && (roomForm.get('capacity').touched || roomForm.get('capacity').dirty)">
+            <ng-container *ngIf="roomForm.get('capacity').hasError('required')">
+              <p>Please specify the number of seats.</p>
+            </ng-container>
+            <ng-container *ngIf="roomForm.get('capacity').hasError('min')">
+              <p>There needs to be at least one seat in the room.</p>
+            </ng-container>
+          </ng-container>
+        </div>
+
+        <ng-container *ngIf="isNotInformationModal">
+          <div class="mt-4 d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cancel click')">Cancel
+            </button>
+            <button type="button" class="btn btn-primary text-white" [disabled]="roomForm.invalid"
+                    (click)="submitRoom()">
+              {{ btnInscription }}
+            </button>
+          </div>
+        </ng-container>
+      </form>
+    </div>
+  </div>
+</div>

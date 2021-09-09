@@ -1,0 +1,23 @@
+@import "src/styles";
+
+nav {
+  border-bottom: $border-light-secondary-m;
+}
+
+img {
+  height: $height-xs;
+}
+
+fa-icon {
+  cursor: pointer;
+}
+
+li a.active, li a:hover {
+  color: $primary !important;
+}
+
+#clock {
+  position: absolute;
+  left: 45%;
+  width: 10%
+}

@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="col-7 mt-5">
+      <div class="image-box">
+        <img src="assets/img/logo.png">
+      </div>
+    </div>
+
+    <div class="col-4 user-forms mt-5 bg-light input-box">
+      <div>
+        <form [formGroup]="userCredentialsForm">
+          <div>
+            <h3 class="mt-3">Sign in</h3>
+            <label for="email" class="mt-4">Email</label>
+            <input id="email"
+                   formControlName="email"
+                   class="form-control">
+            <ng-container
+              *ngIf=" userCredentialsForm.get('email').invalid && (userCredentialsForm.get('email').touched || userCredentialsForm.get('email').dirty)">
+              <ng-container *ngIf="userCredentialsForm.get('email').hasError('required')">
+                <p>Please specify your email address.</p>
+              </ng-container>
+              <ng-container *ngIf="userCredentialsForm.get('email').hasError('email')">
+                <p>You have entered an invalid email address.</p>
+              </ng-container>
+            </ng-container>
+          </div>
+
+          <div class="mt-4">
+            <label for="password">Password</label>
+            <input type="password"
+                   id="password"
+                   formControlName="password"
+                   class="form-control">
+            <ng-container
+              *ngIf=" userCredentialsForm.get('password').invalid && (userCredentialsForm.get('password').touched || userCredentialsForm.get('password').dirty)">
+              <ng-container *ngIf="userCredentialsForm.get('password').hasError('required')">
+                <p>Please specify your password.</p>
+              </ng-container>
+              <ng-container *ngIf="userCredentialsForm.get('password').hasError('minLength')">
+                <p>Your password has at least 8 characters.</p>
+              </ng-container>
+            </ng-container>
+          </div>
+
+          <button type="button" class="btn btn-primary text-white mt-4" [disabled]="userCredentialsForm.invalid"
+                  (click)="submitLoginData()">
+            Sign in
+          </button>
+        </form>
+      </div>
+      <hr>
+      <button (click)="openSignUpModal()" type="button" class="btn btn-secondary text-white mt-5 mb-5">Create Account
+      </button>
+    </div>
+  </div>
+</div>
+<app-toasts></app-toasts>
+

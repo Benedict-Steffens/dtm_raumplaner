@@ -1,0 +1,107 @@
+<div role="document" class="modal-dialog m-0">
+  <div class="modal-content">
+    <div class="modal-header bg-secondary d-flex align-items-center">
+      <h4 class="modal-title text-white ">{{ title }}</h4>
+      <button id="cross-click" type="button" class="close text-white" aria-label="Close"
+              (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <form [formGroup]="bookingForm">
+        <div>
+          <label for="purpose">Purpose</label>
+          <input id="purpose"
+                 formControlName="purpose" class="form-control">
+          <ng-container
+            *ngIf=" bookingForm.get('purpose').invalid && (bookingForm.get('purpose').touched || bookingForm.get('purpose').dirty)">
+            <ng-container *ngIf="bookingForm.get('purpose').hasError('required')">
+              <p>Please specify the booking purpose.</p>
+            </ng-container>
+            <ng-container *ngIf="bookingForm.get('purpose').hasError('maxlength')">
+              <p>Booking purpose shall not be longer than 100 characters.</p>
+            </ng-container>
+          </ng-container>
+        </div>
+
+        <div class="form-group mt-4">
+          <label for="date-picker">Date</label>
+          <div class="input-group">
+            <input id="date-picker" (ngModelChange)="dateTimeChange()" class="form-control"
+                   placeholder="{{ bookingForm.controls.date.value }}"
+                   name="dp" formControlName="date" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                <fa-icon [icon]="calenderIcon"></fa-icon>
+              </button>
+            </div>
+          </div>
+          <ng-container
+            *ngIf=" bookingForm.get('date').invalid && (bookingForm.get('date').touched || bookingForm.get('date').dirty)">
+            <ng-container *ngIf="bookingForm.get('date').hasError('required')">
+              <p>Please specify the booking date.</p>
+            </ng-container>
+            <ng-container *ngIf="bookingForm.get('date').hasError('invalidDate')">
+              <p>Booking date shall not be in the past.</p>
+            </ng-container>
+          </ng-container>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <div>
+            <label>Start Time</label>
+            <ngb-timepicker (ngModelChange)="dateTimeChange()" formControlName="startBooking"></ngb-timepicker>
+          </div>
+          <div>
+            <label>End Time</label>
+            <ngb-timepicker (ngModelChange)="dateTimeChange()" formControlName="endBooking"></ngb-timepicker>
+          </div>
+        </div>
+
+        <div class="custom-slider">
+          <ng5-slider class="text-secondary bg-secondary" [(value)]="rangeStartBooking"
+                      [(highValue)]="rangeEndBooking"
+                      [options]="rangeSliderOptions"></ng5-slider>
+          <ng-container
+            *ngIf=" bookingForm.invalid && (bookingForm.get('startBooking').touched || bookingForm.get('startBooking').dirty)">
+            <ng-container *ngIf="bookingForm.get('startBooking').hasError('required')">
+              <p>Please specify the start time.</p>
+            </ng-container>
+          </ng-container>
+          <ng-container
+            *ngIf=" bookingForm.get('endBooking').invalid && (bookingForm.get('endBooking').touched || bookingForm.get('endBooking').dirty)">
+            <ng-container *ngIf="bookingForm.get('endBooking').hasError('required')">
+              <p>Please specify the end of the booking.</p>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="bookingForm.hasError('invalidBookingTimes')">
+            <p>Booking shall not start in the past.</p>
+          </ng-container>
+        </div>
+
+        <label class="mt-4">Room</label>
+        <div class="rooms">
+          <ng-container *ngFor="let room of rooms">
+            <ng-container *ngIf="rooms">
+              <app-room-list-element (click)="checkRoomSelection()" [room]="room"></app-room-list-element>
+            </ng-container>
+          </ng-container>
+        </div>
+        <ng-container *ngIf="!isRoomSelected">
+          <p>Please select an available room.</p>
+        </ng-container>
+
+        <div class="mt-4 d-flex justify-content-between">
+          <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cancel click')">Cancel
+          </button>
+          <button type="button" class="btn btn-primary text-white" [disabled]="bookingForm.invalid"
+                  (click)="submitBooking()">
+            Create
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

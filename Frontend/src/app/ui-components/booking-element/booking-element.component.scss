@@ -1,0 +1,10 @@
+@import "src/styles";
+
+.single-booking {
+  position: absolute;
+  float: left;
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: $z-index-m;
+}

@@ -1,0 +1,45 @@
+<div class="room-element-container" [ngClass]="{'hide': isOnlyAvailableRooms && availableInMinutes > 0}">
+  <div class="row">
+    <div class="col-2">
+      <ng-container *ngIf="availableInMinutes <= 0">
+        <div class="d-flex align-items-center flex-column" placement="top"
+             ngbTooltip="The room is available for {{availableInMinutes* -1 | timeConversion}}.">
+          <fa-icon class="mr-2 text-success" [icon]="checkCircleIcon"></fa-icon>
+          <span class="badge text-success">for {{availableInMinutes * -1 | timeConversion}}</span>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="availableInMinutes > 0">
+        <div class="d-flex align-items-center flex-column" placement="top"
+             ngbTooltip="The room is occupied. It is available in {{availableInMinutes | timeConversion}}.">
+          <fa-icon class="mr-2 text-danger" [icon]="clockIcon"></fa-icon>
+          <span class="badge text-danger">in {{availableInMinutes | timeConversion}}</span>
+        </div>
+      </ng-container>
+    </div>
+    <div class="col-4 d-flex align-self-center">
+      <h5 class="text-secondary p-0 m-0 clickable" (click)="openDisplayRoomModal()">{{room.name}}</h5>
+    </div>
+    <div id="location-display" class="col-2 align-self-center">
+      <span>{{room.location}}</span>
+    </div>
+    <div class="col-2 align-self-center">
+      <span>{{room.capacity}}</span>
+    </div>
+    <div class="col-2 d-flex align-items-center justify-content-center">
+      <button type="button" class="btn btn-primary booking-button text-white">Book</button>
+      <div ngbDropdown>
+        <fa-icon id="roomOptions" class="text-secondary pl-3 clickable" ngbDropdownToggle [icon]="ellipsisVIcon"></fa-icon>
+        <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="roomOptions">
+          <button (click)="openUpdateRoomModal()" ngbDropdownItem class="text-secondary d-flex justify-content-start">
+            <fa-icon class="mr-3" [icon]="editIcon"></fa-icon>
+            <span>Edit</span>
+          </button>
+          <button (click)="deleteToast()" ngbDropdownItem class="text-secondary d-flex justify-content-start">
+            <fa-icon class="mr-3" [icon]="trashAltIcon"></fa-icon>
+            <span>Delete</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+@import "src/styles";
+
+p {
+  color: $danger;
+}
+
+label {
+  font-size: large;
+}
+
+.btn {
+  width: $width-m;
+  height: $height-s;
+}
+
+#cross-click:focus {
+  outline: none;
+}
+
+input.ng-valid:not(.ng-untouched), textarea.ng-valid:not(.ng-untouched) {
+  border-color: $success !important;
+}
+
+input.ng-invalid:not(.ng-untouched), textarea.ng-invalid:not(.ng-untouched) {
+  border-color: $danger !important;
+}

@@ -1,0 +1,117 @@
+@import "src/styles";
+
+$column-width: 120px;
+
+@function calc_width($factor) {
+  @return $column-width * $factor;
+}
+
+input.form-control {
+  height: $height-s;
+  border-color: $primary;
+  cursor: pointer;
+  width: $width-s !important;
+  border-radius: $border-radius !important;
+}
+
+.btn-outline-primary {
+  width: $width-l;
+  height: $height-s;
+}
+
+.btn-outline-primary:hover {
+  color: $white;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.table-header {
+  height: $height-s;
+  border-bottom: $border-light-secondary-m;
+  z-index: $z-index-l;
+}
+
+.table-cell {
+  height: $height-l;
+  border-top: $border-xs solid $light-secondary;
+}
+
+.header-cell {
+  width: $column-width;
+  border-right: $border-light-secondary-s;
+}
+
+.full-width {
+  width: calc_width(24);
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
+.icon {
+  font-size: $fa-icon-size-l;
+}
+
+.custom-control-label {
+  font-size: medium;
+}
+
+.custom-control-label::after {
+  height: $checkbox-size;
+  width: $checkbox-size;
+}
+
+.custom-control-label:before {
+  border-color: $primary;
+  height: $checkbox-size;
+  width: $checkbox-size;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: $primary;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='white' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+  height: $checkbox-size;
+  width: $checkbox-size;
+}
+
+.bg-gray-start {
+  height: $height-l - $border-xs;
+  width: calc_width(8);
+  background-color: $lighter-gray;
+  z-index: $z-index-s;
+}
+
+.bg-gray-end {
+  height: $height-l - $border-xs;
+  width: calc_width(6);
+  background-color: $lighter-gray;
+  z-index: $z-index-s;
+}
+
+#room-table {
+  overflow-y: hidden;
+  border-right: $border-s solid white;
+  max-height: 700px;
+}
+
+#btn-icon {
+  font-size: $fa-icon-size;
+}
+
+#line {
+  margin-top: $margin-l;
+  border-left: $border-s solid $danger;
+  position: absolute;
+  z-index: $z-index-l;
+}
+
+#bookingTable {
+  max-height: 700px;
+}

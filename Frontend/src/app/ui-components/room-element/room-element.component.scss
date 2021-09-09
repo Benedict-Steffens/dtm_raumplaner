@@ -1,0 +1,31 @@
+@import "src/styles";
+
+.room-element-container {
+  margin-top: $margin-m;
+  height: $height-l;
+}
+
+.booking-button {
+  width: $width-m;
+  height: $height-s;
+}
+
+.dropdown-menu {
+  min-width: $min-width-m;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.hide {
+  display: none !important;
+}
+
+#location-display {
+  height: $height-s;
+}
+
+fa-icon.mr-3 {
+  width: $fa-icon-size;
+}

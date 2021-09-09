@@ -1,0 +1,10 @@
+<div class="form-check">
+  <div class="ml-2">
+    <input class="form-check-input" #checkBox [disabled]="!isAvailableForSpecifiedPeriod"
+           type="radio" name="roomRadios"
+           id="{{ room.id }}" value="{{ room.id }}">
+    <label class="form-check-label" for="{{ room.id }}">
+      <h5>{{ room.name }}</h5>
+    </label>
+  </div>
+</div>

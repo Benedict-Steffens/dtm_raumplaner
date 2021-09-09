@@ -1,0 +1,216 @@
+{
+	"info": {
+		"_postman_id": "237c5ff9-14f5-48f3-9021-ee3bfd9b1463",
+		"name": "Booking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"purpose\": \"Strategy Windows X\",\n    \"date\": \"2020-09-15\",\n    \"startBooking\": \"2020-09-15T09:00:00\",\n    \"endBooking\": \"2020-09-15T11:00:00\",\n    \"room\": {\n        \"id\": 1,\n        \"name\": \"The Triangle Office\",\n        \"description\": \"top UHD Beamer mit VoiP and super view\",\n        \"location\": \"minor buidling, room 1.01\",\n        \"capacity\": 10\n    },\n    \"appUser\": {\n        \"id\": 1,\n        \"firstName\": \"Steve\",\n        \"secondName\": \"Jobs\",\n        \"email\": \"steve.jobs@apple.com\",\n        \"password\": null,\n        \"role\": {\n            \"id\": 2,\n            \"name\": \"user\"\n        },\n        \"emailVerification\": {\n            \"id\": 4,\n            \"newEmail\": null\n        }\n}\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/bookings",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/booking/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"booking",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findByDate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/booking/byDate/2020-11-15",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"booking",
+						"byDate",
+						"2020-11-15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 2,\n    \"purpose\": \"Strategy Windows XY\",\n    \"date\": \"2020-09-15\",\n    \"startBooking\": \"2020-09-15T08:00:00\",\n    \"endBooking\": \"2020-09-15T10:00:00\",\n    \"room\": {\n        \"id\": 3,\n        \"name\": \"The Triangle Office\",\n        \"description\": \"top Beamer\",\n        \"location\": \"main buidling, room 3.01\",\n        \"capacity\": 10\n    },\n    \"appUser\": {\n        \"id\": 7,\n        \"firstName\": \"Steven Anthony\",\n        \"secondName\": \"Ballmer\",\n        \"email\": null,\n        \"password\": \"$2a$10$TZWacnnMO2jAelPODObvy.U4jR6P00YPAfy2CZlOC9McpNCD8C.XG\",\n        \"role\": {\n            \"id\": 2,\n            \"name\": \"user\"\n        },\n        \"emailVerification\": {\n            \"id\": 8,\n            \"newEmail\": \"steven@microsoft.com\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/bookings",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/booking/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"booking",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAvailableRooms",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/booking/available",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"booking",
+						"available"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

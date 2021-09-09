@@ -1,0 +1,80 @@
+<div class="container bg-white pt-2 mb-2">
+  <div class="row mb-3 mt-4">
+    <div class="col-2 pl-2">
+      <div class="custom-control custom-checkbox mb-2">
+        <input type="checkbox" #checkboxOwnBookings (click)="filterBookings()" class="custom-control-input"
+               id="checkboxOwnBookings">
+        <label class="custom-control-label clickable text-primary pt-1 pl-2" for="checkboxOwnBookings">My
+          bookings</label>
+      </div>
+      <form class="form-inline ">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="text-primary clickable mr-1 icon">
+              <fa-icon (click)="changeSelectedDate(-1)" [icon]="arrowLeftIcon"></fa-icon>
+            </div>
+            <input class="form-control text-primary" (click)="datePicker.toggle()" placeholder="{{ selectedDate }}"
+                   name="dp" [(ngModel)]="selectedDate" (ngModelChange)="updateBookingTable()" ngbDatepicker
+                   #datePicker="ngbDatepicker">
+            <div class="text-primary clickable ml-1 icon">
+              <fa-icon (click)="changeSelectedDate(1)" [icon]="arrowRightIcon"></fa-icon>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-4 offset-2 d-flex justify-content-center">
+      <h1 class="text-secondary">Bookings</h1>
+    </div>
+
+    <div class="col-2 offset-2 d-flex justify-content-center align-items-start">
+      <button (click)="openCreateBookingModal()" type="button"
+              class="btn btn-outline-primary d-flex justify-content-center align-items-center">
+        <fa-icon id="btn-icon" [icon]="plusCircleIcon" class="mr-2"></fa-icon>
+        New Booking
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2 p-0 overflow-scroll" id="room-table" #roomTable>
+      <div
+        class="table-header text-white bg-secondary d-flex align-items-center justify-content-center sticky">
+        <h4 class="m-0">Rooms</h4>
+      </div>
+      <ng-container *ngFor="let room of allRooms">
+        <div
+          class="table-cell d-flex justify-content-center align-items-center bg-light text-primary">
+          <h6 class="m-0 clickable" [routerLink]="'/rooms/' + room.id">{{room.name}}</h6>
+        </div>
+      </ng-container>
+    </div>
+
+    <div id="bookingTable" class="col-10 p-0 overflow-scroll" #timetable
+         (scroll)="roomTable.scrollTop = timetable.scrollTop">
+      <div id="line" #line></div>
+      <div class="bg-secondary text-white d-flex flex-row full-width table-header sticky">
+        <ng-container *ngFor="let hour of hourItemsForTable; let i = index">
+          <div class="header-cell d-flex align-items-center pl-1"><h5 class="p-0">{{ i }}h</h5>
+          </div>
+        </ng-container>
+      </div>
+      <ng-container *ngFor="let room of allRooms">
+        <div class="table-cell full-width position-relative">
+          <ng-container *ngFor="let booking of filteredBookings">
+            <ng-container *ngIf="booking.room.id === room.id">
+              <app-booking-element [booking]="booking" [userId]="userId"></app-booking-element>
+            </ng-container>
+          </ng-container>
+          <div class="d-flex justify-content-between">
+            <div class="bg-gray-start"></div>
+            <div class="bg-gray-end"></div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+  </div>
+</div>
+<app-toasts></app-toasts>

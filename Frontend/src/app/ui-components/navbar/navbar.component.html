@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+  <a class="navbar-brand text-white" routerLink=""><img src="assets/img/navLogo.png"></a>
+  <button (click)="changeMenuToggledStatus()"
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="clock" class="text-white d-flex justify-content-center">
+    <span>{{ currentTime | date:'HH:mm'}}</span>
+  </div>
+  <div id="navbarSupportedContent" class="collapse navbar-collapse" [ngClass]="{'show': isMenuToggleClicked}">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/bookings" routerLinkActive="active">Bookings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/rooms" routerLinkActive="active">Rooms</a>
+      </li>
+    </ul>
+    <fa-icon (click)="logout()" class="text-white" [icon]="signOutIcon"></fa-icon>
+  </div>
+</nav>
